@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso Alevines</title>
+
+    <link rel="stylesheet" href="../css/container.css">
+    <link rel="stylesheet" href="../css/popup.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="../datatables/DataTables-1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+    <style>
+        body.dark-mode {
+            background-color: #222;
+            color: #fff;
+        }
+
+        body.dark-mode nav {
+            background-color: #333;
+        }
+
+
+        body.dark-mode .nav-links li a {
+            color: #fff;
+        }
+
+        body.dark-mode .form label {
+            color: #fff;
+        }
+
+        body.dark-mode .form input,
+        body.dark-mode .form select {
+            background-color: #333;
+            color: #fff;
+        }
+
+        body.dark-mode .btn {
+            background-color: #555;
+            color: #fff;
+        }
+
+        body.dark-mode .table-striped thead th {
+            background-color: #555;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <div class="logo">
+            <img src="../ima/aproColores.png" alt="Logo Image">
+        </div>
+        <button class="nav-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu">
+            <li class="nav-menu-item">
+                <a href="PaneldeControl.html" class="nav-menu-link1 nav-link1"> <i class="uil uil-estate"></i>PANEL DE
+                    CONTROL</a>
+            </li>
+            <li class="nav-menu-item">
+                <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-moon"></i>MODO OSCURO</a>
+            </li>
+            <li class="nav-menu-item">
+                <a href="#" onclick="CerrarSesion()" class="nav-menu-link1 nav-link1 toggle-mode"> 
+                    <i class="uil uil-signout"></i>CERRAR SESIÓN</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="container-custom" style="margin-top: 10rem;">
+        <header style="text-align: center;">Ingreso de Alevines</header>
+
+        <form id="entryalevines_form" onsubmit="return validarFecha()">
+            <div class="form first">
+                <div class="details personal">
+
+                    <div class="fields">
+
+                        <div class="input-field">
+                            <label for="date">Fecha de Ingreso</label>
+                            <input type="datetime-local" id="date" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="provider">Proveedor</label>
+                            <select id="provider" name="provider" class="formulario__campo">
+                                <option disabled selected>Seleccione el tipo de Proveedor</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="loteProvider">Lote de Proveedor</label>
+                            <input type="text" id="loteProvider" placeholder="tp-3333" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="pilaProvider">Pila de Proveedor</label>
+                            <input type="text" id="pilaProvider" placeholder="15" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="employee">Encargado</label>
+                            <input type="text" id="employee" placeholder="202220222" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="pilaEntry">Pila de ingreso</label>
+                            <select class="formulario__campo" id="pilaEntry" required>
+                                <option disabled selected>--Seleccione la pila--</option>
+
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="batch">Lote</label>
+                            <input type="text" id="batch" placeholder="ap-1" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="typeFish">Especie de tilapia</label>
+                            <input type="text" id="typeFish" placeholder="Especie" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" id="cantidad" placeholder="8000" required min="1">
+                        </div>
+
+                        <div class="input-field">
+                            <button type="submit" class="btn nextBtn" onclick="openPopup()">Registrar</button>
+                            <div class="popup" id="popup">
+                                <img src="../ima/tick.png">
+                                <p style="color: white;" id="alerta">Se ha guardado correctamente!</p>
+                                <button style="margin-left: 21%;" type="button" onclick="closePopup()">OK</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+
+    <!--Ejemplo tabla con DataTables-->
+    <!-- Tabla Alumnos  -->
+    <div class="container my-5">
+        <div class="row">
+            <table id="example" class="table table-striped table-bordered " cellspacing="0"
+                width="100%" style="margin: 0 auto;">
+                <thead>
+                    <th style="background-color: #0d6efd; color: white;">Fecha Ingreso</th>
+                    <th style="background-color: #0d6efd; color: white;">Proveedor</th>
+                    <th style="background-color: #0d6efd; color: white;">Lote Proveedor</th>
+                    <th style="background-color: #0d6efd; color: white;">Pila Proveedor</th>
+                    <th style="background-color: #0d6efd; color: white;">Encargado</th>
+                    <th style="background-color: #0d6efd; color: white;">Pila Ingreso</th>
+                    <th style="background-color: #0d6efd; color: white;">Lote Ingreso</th>
+                    <th style="background-color: #0d6efd; color: white;">Especie</th>
+                    <th style="background-color: #0d6efd; color: white;">Cantidad</th>
+                    <th style="background-color: #0d6efd; color: white;">Acciones</th>
+                </thead>
+                <tbody data-table>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Modal para Editar   -->
+    <div id="modalAlumno" class="modal fade" tabindex="-1" aria-labelledby="modalAlumno" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Información</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="frmActualizarEntry">
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="provider" class="col-form-label">Proveedor:</label>
+                            <select id="provider_editar" name="provider_editar" class="formulario__campo">
+                                <option disabled selected>Seleccione el Proveedor</option>
+                            </select>
+                        </div>
+                        <form id="frmActualizarEntry">
+                            <div class="modal-body">
+
+                                <div class="mb-3">
+                                    <label for="loteProvider" class="col-form-label">Lote Proveedor:</label>
+                                    <input id="loteProvider_editar" name="loteProvider_editar" type="text"
+                                        class="form-control" value="">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="pilaProvider" class="col-form-label">Pila Proveedor:</label>
+                                    <input id="pilaProvider_editar" name="pilaProvider_editar" type="text"
+                                        class="form-control" value="">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="pilaEntry" class="col-form-label">Pila Ingreso:</label>
+                                    <select id="pilaEntry_editar" name="pilaEntry_editar" type="number" min="1"
+                                        class="form-control" value="" required>
+                                        <option disabled selected>--Seleccione la pila--</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="batch" class="col-form-label">Lote Aprotila:</label>
+                                    <input id="batch_editar" name="batch_editar" type="text"
+                                        class="form-control" value="">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="typeFish" class="col-form-label">Especie:</label>
+                                    <input id="typeFish_editar" name="typeFish_editar" type="text" class="form-control"
+                                        value="">
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="cantidad" class="col-form-label">Cantidad:</label>
+                                    <input id="cantidad_editar" name="cantidad_editar" type="number"
+                                        class="form-control" min="1" value="">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+
+        </div>
+
+        <script type="text/JavaScript" src="../js/autenticacion.js" ></script>
+        <script src="../JQuery/code.jquery.com_jquery-3.7.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
+            integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="../datatables/datatables.min.js"></script>
+        <script src="../datatables/Buttons-2.3.6/js/dataTables.buttons.min.js"></script>
+        <script src="../datatables/JSZip-2.5.0/jszip.min.js"></script>
+        <script src="../datatables/pdfmake-0.2.7/pdfmake.min.js"></script>
+        <script src="../datatables/pdfmake-0.2.7/vfs_fonts.js"></script>
+        <script src="../datatables/Buttons-2.3.6/js/buttons.html5.min.js"></script>
+
+        <script src="../js/actualizarEntryAle.js"></script>
+        <script src="../js/optionProvider.js"></script>
+        <script src="../js/date.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+        <script>
+            const toggleModeButton = document.querySelector('.toggle-mode');
+            const body = document.querySelector('body');
+
+            toggleModeButton.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+            });
+        </script>
+
+        <script>
+            const navToggle = document.querySelector(".nav-toggle");
+            const navMenu = document.querySelector(".nav-menu");
+
+            navToggle.addEventListener("click", () => {
+                navMenu.classList.toggle("nav-menu_visible");
+
+                if (navMenu.classList.contains("nav-menu_visible")) {
+                    navToggle.setAttribute("aria-label", "Cerrar menú");
+                } else {
+                    navToggle.setAttribute("aria-label", "Abrir menú");
+                }
+            });
+        </script>
+        <script>
+            const selectElement = document.getElementById('pilaEntry');
+
+            fetch('http://localhost:8082/API/Pila', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authenticate': localStorage.getItem("authenticate"),
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const mortalidad = data.mantePila; // Ajusta la propiedad 'mortalidad' según la estructura de los datos
+
+                    mortalidad.forEach(muerte => {
+                        const option = document.createElement('option');
+                        option.value = muerte.numPila;
+                        option.textContent = muerte.numPila;
+                        selectElement.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener la mortalidad:', error);
+                });
+        </script>
+        <script>
+            const selectElementEditar = document.getElementById('pilaEntry_editar');
+
+            fetch('http://localhost:8082/API/Pila', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authenticate': localStorage.getItem("authenticate"),
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const pilas = data.mantePila; // Ajusta la propiedad 'mantePila' según la estructura de los datos
+
+                    pilas.forEach(pila => {
+                        const option = document.createElement('option');
+                        option.value = pila.numPila;
+                        option.textContent = pila.numPila;
+                        selectElementEditar.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener las pilas:', error);
+                });
+        </script>
+
+        <script>
+
+            const listaAlevines = () =>
+                fetch('http://localhost:8082/API/entryalevines', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'authenticate': localStorage.getItem("authenticate"),
+                    }
+                }).then((respuesta) => respuesta.json());
+
+            listaAlevines()
+                .then((data) => {
+                    console.log(data);
+                    let alevines = data.alevines;
+                    if (alevines) {
+                        alevines.forEach(alevin => {
+                            const nuevaLinea = crearNuevaLinea(alevin._id, alevin.date, alevin.provider, alevin.loteProvider, alevin.pilaProvider, alevin.employee, alevin.pilaEntry, alevin.batch, alevin.typeFish, alevin.cantidad);
+                            table.appendChild(nuevaLinea);
+                        });
+                        $('#example').DataTable({
+                            "language": {
+                                "lengthMenu": "Mostrar _MENU_ registros por página",
+                                "zeroRecords": "No se encontraron resultados",
+                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                "infoEmpty": "No hay registros disponibles",
+                                "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                                "search": "Buscar:",
+                                "paginate": {
+                                    "first": "Primero",
+                                    "last": "Último",
+                                    "next": "Siguiente",
+                                    "previous": "Anterior"
+                                },
+                                "buttons": {
+                                    "excel": "Exportar a Excel",
+                                    "pdf": "Exportar a PDF",
+                                    "print": "Imprimir"
+                                }
+                            },
+                            "dom": 'lBfrtip',
+                            "buttons": [
+                                'excel', 'pdf', 'print'
+                            ],
+                        });
+                    } else {
+                        console.error("La propiedad 'entryalevines' es undefined en el objeto 'data'");
+                    }
+                }).catch((error) => {
+                    console.error(error);
+                    alert("Ocurrió un error");
+                });
+
+
+
+            const crearNuevaLinea = (id, date, provider, loteProvider, pilaProvider, employee, pilaEntry, batch, typeFish, cantidad) => {
+                const linea = document.createElement("tr");
+                linea.setAttribute("id", id); // Agregar el atributo "id" con el valor del ID
+
+                const contenido =
+                    `<td class="td" data-td>${date}</td>
+    <td>${provider}</td>
+    <td>${loteProvider}</td>
+    <td>${pilaProvider}</td>
+    <td>${employee}</td>
+    <td>${pilaEntry}</td>
+    <td>${batch}</td>
+    <td>${typeFish}</td>
+    <td>${cantidad}</td>
+                  <td>
+  
+                    <button class="btn btn-outline-danger bi bi-trash" id="${id}"></a>
+                    <button class="btnEditar btn btn-outline-primary bi bi-pencil"></a>
+             
+                  </td>`;
+                linea.innerHTML = contenido;
+                const btn = linea.querySelector("button");
+                btn.addEventListener('click', () => {
+                    const id = btn.id;
+                    console.log(id);
+                    eliminarEntry(id);
+                });
+                return linea;
+            }
+
+            const table = document.querySelector("[data-table]");
+
+            const eliminarEntry = (id) => {
+                fetch(`http://localhost:8082/API/entryalevines/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'authenticate': localStorage.getItem("authenticate"),
+                    }
+                })
+                    .then(respuesta => {
+                        window.location.reload();
+                        console.log(respuesta);
+                    })
+                    .catch((error) => alert("Ocurrió un error"));
+            }
+
+        </script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+
+        <script>
+            const entryalevinesForm = document.getElementById('entryalevines_form');
+            // Obtener el elemento HTML del formulario de citas por ults-fosu ID y almacenarlo en la constante appointmentForm
+            entryalevinesForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const alevinDate = document.getElementById('date').value;
+                const alevinProvider = document.getElementById('provider').value;
+                const alevinLoteProvider = document.getElementById('loteProvider').value;
+                const alevinPilaProvider = document.getElementById('pilaProvider').value;
+                const alevinEmployee = document.getElementById('employee').value;
+                const alevinPilaEntry = document.getElementById('pilaEntry').value;
+                const alevinBatch = document.getElementById('batch').value;
+                const alevinTypeFish = document.getElementById('typeFish').value;
+                const alevinCantidad = document.getElementById('cantidad').value;
+
+
+                const response = await fetch('http://localhost:8082/API/entryalevines', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'authenticate': localStorage.getItem("authenticate"),
+                    },
+                    body: JSON.stringify({
+                        date: alevinDate,
+                        provider: alevinProvider,
+                        loteProvider: alevinLoteProvider,
+                        pilaProvider: alevinPilaProvider,
+                        employee: alevinEmployee,
+                        pilaEntry: alevinPilaEntry,
+                        batch: alevinBatch,
+                        typeFish: alevinTypeFish,
+                        cantidad: alevinCantidad
+                    })
+                });
+                const responseData = await response.json();
+                // Analizar la respuesta de la API y almacenarla en la variable responseData
+
+                if (responseData.ok === false) {
+                    alert('Ocurrió un error al agregar la consulta: ' + json.msg);
+                }
+
+
+                if (responseData.ok === 200) {
+                    location.reload();
+                    alert('Consulta agregada correctamente: ' + json.msg);
+
+                }
+                else {
+
+
+                    responseData.errors.forEach(function (error) {
+                        console.log(error);
+                    });
+                    alert('Ocurrió un error al agregar la consulta: ' + json.errors[0].msg);
+
+
+                    if (responseData.ok === 400) {
+                        alert('Ocurrió un error al agregar la consulta');
+                        console.log(responseData);
+                    }
+
+
+                }
+                // Comprobar si la respuesta de la API es exitosa (código de estado 200) y mostrar un mensaje de alerta correspondiente, además de restablecer el formulario. En caso contrario, mostrar un mensaje de error.
+            });
+        </script>
+
+        <script>
+            let popup = document.getElementById("popup");
+            function openPopup() {
+                popup.classList.add("open-popup")
+            }
+            function closePopup() {
+                popup.classList.remove("open-popup")
+            }
+        </script>
+
+</body>
+
+</html>
