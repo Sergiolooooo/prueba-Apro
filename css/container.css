@@ -329,9 +329,15 @@ form .buttons button , .backBtn{
     border: 1px solid #ddd;
 }
 
-.table th, .table td {
-    font-size: 16px;
-    padding: 8px;
+.table td {
+    font-size: 14px;
+    padding: 4px;
+    text-align: center;
+}
+
+.table th {
+    font-size: 14px;
+    padding: 4px;
     text-align: center;
 }
 
@@ -344,9 +350,9 @@ form .buttons button , .backBtn{
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.table tbody td:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-}
+/* .table tbody td:hover {
+    background-color: rgba(66, 66, 66, 0.172);
+} */
 
 @media screen and (max-width: 700px) {
     .table {

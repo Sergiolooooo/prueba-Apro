@@ -22,41 +22,6 @@
 <link rel="stylesheet" 
 href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <style>
-        body.dark-mode {
-          background-color: #222;
-          color: #fff;
-        }
-      
-        body.dark-mode nav {
-          background-color: #333;
-        }
-
-
-        body.dark-mode .nav-links li a {
-          color: #fff;
-        }
-      
-        body.dark-mode .form label {
-          color: #fff;
-        }
-      
-        body.dark-mode .form input,
-        body.dark-mode .form select {
-          background-color: #333;
-          color: #fff;
-        }
-      
-        body.dark-mode .btn {
-          background-color: #555;
-          color: #fff;
-        }
-        body.dark-mode .table-striped thead th {
-    background-color: #555;
-    color: #fff;
-  }
-  
-      </style> 
 </head>
 
 <body>
@@ -105,8 +70,8 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
                         <div class="input-field">
                             <label for="typeProvider">Provincia</label>
-                            <select id="provincia" name="provincia" onchange="habilitarCantones()">
-                                <option disabled selected>Elija una provincia</option>
+                            <select id="provincia" name="provincia" onchange="habilitarCantones()" required>
+                                <option value="" disabled selected>Elija una provincia</option>
                                 <option value="San José">San José</option>
                                 <option value="Alajuela">Alajuela</option>
                                 <option value="Cartago">Cartago</option>
@@ -119,14 +84,14 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
                         <div class="input-field">
                             <label for="typeProvider">Cantón</label>
-                            <select id="canton" name="canton" onchange="habilitarDistritos()" disabled>
-                                <option disabled selected>Elija un cantón</option>
+                            <select id="canton" name="canton" onchange="habilitarDistritos()" disabled required>
+                                <option value="" disabled selected>Elija un cantón</option>
                             </select>
                         </div>
                         <div class="input-field">
                             <label for="typeProvider">Distrito</label>
-                            <select id="distrito" name="distrito" disabled>
-                                <option disabled selected>Elija un distrito</option>
+                            <select id="distrito" name="distrito" required>
+                                <option value="" disabled selected>Elija un distrito</option>
                             </select>
                         </div>
 
@@ -137,8 +102,8 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
                         <div class="input-field">
                             <label for="typeIdentification">Tipo de Cedula</label>
-                            <select class="formulario__campo" id="typeIdentification" name="typeIdentification">
-                                <option disabled selected>Seleccione el tipo de Cedula</option>
+                            <select class="formulario__campo" id="typeIdentification" name="typeIdentification" required>
+                                <option value="" disabled selected>Seleccione el tipo de Cedula</option>
                                 <option>Juridico</option>
                                 <option>Fisica</option>
                             </select>
@@ -234,8 +199,8 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
                         <div class="mb-3">
                             <label for="provincia" class="col-form-label">Provincia</label>
-                            <select id="provincia_editar" name="provincia_editar" onchange="habilitarCantones()">
-                                <option disabled selected>Elija una provincia</option>
+                            <select id="provincia_editar" name="provincia_editar" onchange="habilitarCantonesEditar()">
+                                <option value="" disabled selected>Elija una provincia</option>
                                 <option value="San José">San José</option>
                                 <option value="Alajuela">Alajuela</option>
                                 <option value="Cartago">Cartago</option>
@@ -250,8 +215,8 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
                         <div class="mb-3">
                             <label for="canton" class="col-form-label">Cantón</label>
-                            <select id="canton_editar" name="canton_editar" onchange="habilitarDistritos()">
-                                <option disabled selected>Elija un cantón</option>
+                            <select id="canton_editar" name="canton_editar" onchange="habilitarDistritosEditar()">
+                                <option value="" disabled selected>Elija un cantón</option>
                             </select>
                         </div>
 
@@ -259,7 +224,7 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
                         <div class="mb-3">
                             <label for="distrito" class="col-form-label">Distrito</label>
                             <select id="distrito_editar" name="distrito_editar" disabled>
-                                <option disabled selected>Elija un distrito</option>
+                                <option value="" disabled selected>Elija un distrito</option>
                             </select>
                         </div>
 
@@ -274,7 +239,7 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
                         <div class="mb-3">
                             <label for="typeIdentification" class="col-form-label">Tipo de Cedula</label>
                             <select id="typeIdentification_editar" name="typeIdentification_editar">
-                                <option disabled selected>Seleccione el tipo de Cedula</option>
+                                <option value="" disabled selected>Seleccione el tipo de Cedula</option>
                                 <option>Juridico</option>
                                 <option>Fisica</option>
                             </select>
@@ -312,7 +277,7 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
 
 
-
+    <script src="../js/autenticacion.js"></script>
     <script src="../JQuery/code.jquery.com_jquery-3.7.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
         integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
@@ -326,6 +291,7 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="../datatables/pdfmake-0.2.7/vfs_fonts.js"></script>
     <script src="../datatables/Buttons-2.3.6/js/buttons.html5.min.js"></script>
     <script src="../js/selectDistritos.js"></script>
+    <script src="../js/selectDistritosEditar.js"></script>
     <script src="../js/actualizarProvider.js"></script>
 
     <script>
@@ -352,32 +318,6 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         });
           </script>
 
-    <script src="../js/optionProvider.js"></script>
-    <script>
-        const selectElementEditar = document.getElementById('typeProvider_editar');
-
-        fetch('http://localhost:8082/API/provider', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'authenticate': localStorage.getItem("authenticate"),
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                const pilas = data.provider; // Ajusta la propiedad 'mantePila' según la estructura de los datos
-
-                pilas.forEach(pila => {
-                    const option = document.createElement('option');
-                    option.value = pila.nameProvider;
-                    option.textContent = pila.nameProvider;
-                    selectElementEditar.appendChild(option);
-                });
-            })
-            .catch(error => {
-                console.error('Error al obtener las pilas:', error);
-            });
-    </script>
   
     <script>
 

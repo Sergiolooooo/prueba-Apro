@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mantenimiento Pila</title>
+    <title>Alimentacion</title>
+
     <link rel="stylesheet" href="../css/container.css">
     <link rel="stylesheet" href="../css/popup.css">
-    <link rel="stylesheet" href="../css/navbar.css">
+
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="../datatables/DataTables-1.13.4/css/dataTables.bootstrap5.min.css">
@@ -14,58 +16,51 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link rel="stylesheet" 
-href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
 </head>
 
 <body>
-    <nav class="nav">
-        <div class="logo">
-            <img src="../ima/aproColores.png" alt="Logo Image">
-          </div>
-      <button class="nav-toggle" aria-label="Abrir menú">
-        <i class="fas fa-bars"></i>
-      </button>
-      <ul class="nav-menu">
-        <li class="nav-menu-item">
-          <a href="PaneldeControl.html" class="nav-menu-link1 nav-link1"> <i class="uil uil-estate"></i>PANEL DE CONTROL</a>
-        </li>
-        <li class="nav-menu-item">
-          <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-moon"></i>MODO OSCURO</a>
-        </li>
-        <li class="nav-menu-item">
-          <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-signout"></i>CERRAR SESIÓN</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="container-custom container-custom-pila" style="margin-top: 10rem;">
-        <header style=" text-align: center;">Mantenimiento Pila</header>
-
-
-        <form id="pila_form">
+    <div class="container-custom" ">
+        <header style=" text-align: center;">Alimentación</header>
+        <form id="alimentacion_form" onsubmit="return validarFecha()">
             <div class="form first">
                 <div class="details personal">
-
                     <div class="fields">
+                        <div class="input-field">
+                            <label for="date">Fecha</label>
+                            <input type="datetime-local" id="date" required>
+                        </div>
 
                         <div class="input-field">
-                            <label for="numPila">Numero de Pila</label>
-                            <input type="number" id="numPila" min="1" required>
+                            <label for="employee">Encargado</label>
+                            <input type="text" id="employee" placeholder="202220222" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="numPila">Pila</label>
+                            <select class="formulario__campo" id="numPila" required>
+                                <option value="" disabled selected>--Seleccione la pila--</option>
+
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="tipoAlimento">Tipo de alimento</label>
+                            <input type="text" id="tipoAlimento" placeholder="Engorde" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="cantidadAlimento">Cantidad de KG</label>
+                            <input type="number" id="cantidadAlimento" placeholder="8000" required min="1">
                         </div>
 
                         <div class="input-field">
                             <label for="observacion">Observaciones</label>
-                            <textarea id="observacion" placeholder="Estado de la pila"></textarea>
+                            <textarea id="observacion" placeholder="En caso de que no quieran comer"></textarea>
                         </div>
 
                         <div class="input-field">
-                            <button type="submit" class="btn nextBtn" onclick="openPopup()">Registrar</button>
+                            <button type="submit" class="btn nextBtn">Registrar</button>
                             <div class="popup" id="popup">
                                 <img src="../ima/tick.png">
                                 <p style="color: white;" id="alerta">Se ha guardado correctamente!</p>
@@ -78,16 +73,21 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         </form>
     </div>
 
-    </div>
 
-        <div class="contenedor2">
-            <table id="example" class="table" cellspacing="0" width="100%"
+
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <!-- Tabla Alumnos -->
+            <table id="example" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%"
                 style="margin: 0 auto;">
                 <thead>
+                    <th style="background-color: #0d6efd; color: white;">Fecha</th>
                     <th style="background-color: #0d6efd; color: white;">Pila</th>
+                    <th style="background-color: #0d6efd; color: white;">Tipo Alimento</th>
+                    <th style="background-color: #0d6efd; color: white;">Cantidad/KG</th>
+                    <th style="background-color: #0d6efd; color: white;">Empleado</th>
                     <th style="background-color: #0d6efd; color: white;">Observaciones</th>
-                    <th style="background-color: #0d6efd; color: white;">#Lote</th>
-                    <th style="background-color: #0d6efd; color: white;">Cantidad</th>
                     <th style="background-color: #0d6efd; color: white;">Acciones</th>
                 </thead>
                 <tbody data-table>
@@ -95,23 +95,35 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
                 </tbody>
             </table>
         </div>
+    </div>
 
-
-    <!-- Modal para Editar   -->
-    <div id="modalPila" class="modal fade" tabindex="-1" aria-labelledby="modalPila" aria-hidden="true">
+    <!-- Modal actualizar -->
+    <div id="modalAlimento" class="modal fade" tabindex="-1" aria-labelledby="modalAlimento" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Editar Información</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="frmActualizarPila">
+                <form id="frmActualizarAlimento">
                     <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="pilaEntry" class="col-form-label">Pila</label>
+                            <select id="numPila_editar" name="numPila_editar" type="number" min="1" class="form-control" required>
+                                <option value="" disabled selected>--Seleccione la pila--</option>
+                            </select>
+
+                        </div>
 
                         <div class="mb-3">
-                            <label for="numPila" class="col-form-label">Numero Pila</label>
-                            <input type="number" id="numPila_editar" name="numPila_editar" class="form-control" min="1"
-                                value="">
+                            <label for="tipo" class="col-form-label">Tipo de alimento</label>
+                            <input type="text" id="tipo_editar" name="tipo_editar" class="form-control" value="">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cantidad" class="col-form-label">Cantidad de Kg</label>
+                            <input type="number" id="cantidad_editar" name="cantidad_editar" class="form-control"
+                                min="1" value="">
                         </div>
 
                         <div class="mb-3">
@@ -129,8 +141,7 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         </div>
 
     </div>
-
-    <script src="../js/autenticacion.js"></script>
+    <script type="text/JavaScript" src="../js/autenticacion.js" ></script>
     <script src="../JQuery/code.jquery.com_jquery-3.7.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
         integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
@@ -142,33 +153,14 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="../datatables/pdfmake-0.2.7/pdfmake.min.js"></script>
     <script src="../datatables/pdfmake-0.2.7/vfs_fonts.js"></script>
     <script src="../datatables/Buttons-2.3.6/js/buttons.html5.min.js"></script>
-    <script src="../js/actPila.js"></script>
+    <script src="../js/actAlimento.js"></script>
+    <script src="../js/optionFood.js"></script>
+    <script src="../js/optionActFood.js"></script>
+
+
     <script>
-        const toggleModeButton = document.querySelector('.toggle-mode');
-        const body = document.querySelector('body');
-        
-        toggleModeButton.addEventListener('click', () => {
-          body.classList.toggle('dark-mode');
-        });
-            </script>
-        
-        <script>
-        const navToggle = document.querySelector(".nav-toggle");
-        const navMenu = document.querySelector(".nav-menu");
-        
-        navToggle.addEventListener("click", () => {
-          navMenu.classList.toggle("nav-menu_visible");
-        
-          if (navMenu.classList.contains("nav-menu_visible")) {
-            navToggle.setAttribute("aria-label", "Cerrar menú");
-          } else {
-            navToggle.setAttribute("aria-label", "Abrir menú");
-          }
-        });
-          </script>
-    <script>
-        const listaPila = () => {
-            return fetch('http://localhost:8082/API/Pila', {
+        const listaMortalidad = () => {
+            return fetch('http://localhost:8082/API/Alimentacion', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -177,13 +169,13 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
             }).then((respuesta) => respuesta.json());
         }
 
-        listaPila()
+        listaMortalidad()
             .then((data) => {
                 console.log(data);
-                let pilas = data.mantePila;
-                if (pilas) {
-                    pilas.forEach(pila => {
-                        const nuevaLinea = crearNuevaLinea(pila._id, pila.numPila, pila.numLote, pila.cantidad, pila.observacion);
+                let alimentacion = data.alimentacion;
+                if (alimentacion) {
+                    alimentacion.forEach(alimento => {
+                        const nuevaLinea = crearNuevaLinea(alimento._id, alimento.date, alimento.numPila, alimento.tipoAlimento, alimento.cantidadAlimento, alimento.employee, alimento.observacion);
                         table.appendChild(nuevaLinea);
                     });
 
@@ -215,26 +207,27 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
                         "responsive": true
                     });
                 } else {
-                    console.error("La propiedad 'pila' es undefined en el objeto 'data'");
+                    console.error("La propiedad 'entryalevines' es undefined en el objeto 'data'");
                 }
             }).catch((error) => {
                 console.error(error);
                 alert("Ocurrió un error");
             });
 
-        const crearNuevaLinea = (id, numPila,numLote,cantidad, observacion) => {
+        const crearNuevaLinea = (id, date, numPila, tipoAlimento, cantidadAlimento, employee, observacion) => {
             const linea = document.createElement("tr");
-            // Se captura el id para llamarlo en el js para realixar el PUT
             linea.setAttribute("id", id);
             const contenido = `
-        <td>${numPila}</td>
-        <td>${observacion}</td>
-        <td>${numLote}</td>
-        <td>${cantidad}</td>
-        <td>
-            <button class="btn btn-outline-danger bi bi-trash" id="${id}"></a>
-            <button class="btnEditar btn btn-outline-primary bi bi-pencil"></a>
-        </td>`;
+            <td class="td" data-td>${date}</td>
+            <td>${numPila}</td>
+            <td>${tipoAlimento}</td>
+            <td>${cantidadAlimento}</td>
+            <td>${employee}</td>
+            <td>${observacion}</td>
+            <td>
+                <button class="btn btn-outline-danger bi bi-trash" id="${id}"></a>
+                <button class="btnEditar btn btn-outline-primary bi bi-pencil"></a>
+            </td>`;
             linea.innerHTML = contenido;
             const btn = linea.querySelector("button");
             btn.addEventListener('click', () => {
@@ -248,7 +241,7 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         const table = document.querySelector("[data-table]");
 
         const eliminarEntry = (id) => {
-            fetch(`http://localhost:8082/API/Pila/${id}`, {
+            fetch(`http://localhost:8082/API/Alimentacion/${id}`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json',
@@ -262,28 +255,48 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
                 .catch((error) => alert("Ocurrió un error"));
         }
 
+        function validarFecha() {
+            const fecha = document.getElementById("date").value;
+            const fechaActual = new Date();
+
+            if (new Date(fecha) > fechaActual) {
+                alert("La fecha seleccionada es mayor a la fecha actual");
+                return false;
+            }
+
+            return true;
+        }
     </script>
 
 
-<script>
-    const pilaForm = document.getElementById('pila_form');
 
 
-        pilaForm.addEventListener('submit', async (event) => {
+    <script>
+        const alimentacionForm = document.getElementById('alimentacion_form');
+
+        alimentacionForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            const pilaNum = document.getElementById('numPila').value;
-            const pilaObservacion = document.getElementById('observacion').value;
+            const alimentacionDate = document.getElementById('date').value;
+            const alimentacionSelect = document.getElementById('numPila').value;
+            const alimentacionTipo = document.getElementById('tipoAlimento').value;
+            const alimentacionCantidad = document.getElementById('cantidadAlimento').value;
+            const alimentacionEmployee = document.getElementById('employee').value;
+            const alimentacionObservacion = document.getElementById('observacion').value;
 
-            const response = await fetch('http://localhost:8082/API/Pila', {
+            const response = await fetch('http://localhost:8082/API/Alimentacion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'authenticate': localStorage.getItem("authenticate"),
                 },
                 body: JSON.stringify({
-                    numPila: pilaNum,
-                    observacion: pilaObservacion
+                    date: alimentacionDate,
+                    numPila: alimentacionSelect,
+                    tipoAlimento: alimentacionTipo,
+                    cantidadAlimento: alimentacionCantidad,
+                    employee: alimentacionEmployee,
+                    observacion: alimentacionObservacion
                 })
             });
 
@@ -296,6 +309,40 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
             }
         });
     </script>
+
+    <script>
+        let popup = document.getElementById("popup");
+        function openPopup() {
+            popup.classList.add("open-popup")
+        }
+        function closePopup() {
+            popup.classList.remove("open-popup")
+        }
+    </script>
+
+
+
+    <script>
+
+        var fechaHoraInput = document.getElementById("date");
+
+        var fechaHoraActual = new Date();
+        fechaHoraActual.setHours(fechaHoraActual.getHours() - 6);
+
+        fechaHoraInput.max = fechaHoraActual.toISOString().slice(0, 16);
+
+        fechaHoraInput.value = fechaHoraActual.toISOString().slice(0, 16);
+
+        fechaHoraInput.addEventListener("change", function () {
+            var seleccionFechaHora = new Date(fechaHoraInput.value);
+            seleccionFechaHora.setHours(seleccionFechaHora.getHours() - 6);
+
+            if (seleccionFechaHora > fechaHoraActual) {
+                fechaHoraInput.value = fechaHoraActual.toISOString().slice(0, 16);
+            }
+        });
+    </script>
+
 </body>
 
 </html>
