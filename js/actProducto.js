@@ -12,7 +12,12 @@ on(document, 'click', '.btnEditar', e => {
     const inventory_id = fila.getAttribute("id"); // Obtener el valor del atributo "data-id"
     const product_id = fila.getAttribute("product_id");
 
-    const dateTb = fila.children[4].innerHTML;
+
+    var fechaHoraInput = document.getElementById("date");
+    var fechaHoraActual = new Date();
+    fechaHoraActual.setHours(fechaHoraActual.getHours() - 6);
+
+    const dateTb = fechaHoraActual.toISOString().slice(0, 16);
     const lastPriceTb = fila.children[0].innerHTML;
     const proveedorProductoTb = fila.children[2].innerHTML;
     const marcaProductoTb = fila.children[7].innerHTML;
@@ -21,6 +26,7 @@ on(document, 'click', '.btnEditar', e => {
     const productoTb = fila.children[6].innerHTML;
     const unityTb = fila.children[8].innerHTML;
     const providerTb = fila.children[5].innerHTML;
+    const stateTb = fila.children[11].innerHTML;
     lastPrice_editar.value = lastPriceTb;
     date_editar.value = dateTb;
     provider_editar.value = proveedorProductoTb;
@@ -30,6 +36,8 @@ on(document, 'click', '.btnEditar', e => {
     product_editar.value = productoTb;
     unity_editar.value = unityTb;
     provider_editar.value = providerTb;
+    state_editar.value = stateTb;
+
 
 
     modalProducto.show();
@@ -44,6 +52,7 @@ on(document, 'click', '.btnEditar', e => {
         const productBrandProduct = document.getElementById('brandProduct_editar').value;
         const productUnity = document.getElementById('unity_editar').value;
         const actualPrice = document.getElementById('price_editar').value;
+        const state = document.getElementById('state_editar').value;
         let lastPrice = document.getElementById('lastPrice_editar').value;
 
         //si cambia el precio actual, entonces guardamos el nuevo precio anterior
@@ -52,6 +61,9 @@ on(document, 'click', '.btnEditar', e => {
         }
         let averagePrice = ((parseInt(actualPrice) + parseInt(lastPrice)) / 2);
         console.log(averagePrice);
+
+        var fechaHoraActual = new Date();
+        fechaHoraActual.setHours(fechaHoraActual.getHours() - 6);
 
 
 
@@ -68,12 +80,14 @@ on(document, 'click', '.btnEditar', e => {
                 amount: productAmount,
                 products: {
                     date: productDate,
+                    dateLastUpdate: (fechaHoraActual.toISOString().slice(0, 16)),
                     provider: prodctProvider,
                     product: product,
                     brandProduct: productBrandProduct,
                     amountIncome: productAmount,
                     unity: productUnity,
-                    price: actualPrice
+                    price: actualPrice,
+                    state: state,
                 }
             })
         })
@@ -83,7 +97,7 @@ on(document, 'click', '.btnEditar', e => {
                     alert(response.message);
                     location.reload()
                 }
-                
+
             });
 
         modalProducto.hide();

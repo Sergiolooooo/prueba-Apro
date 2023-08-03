@@ -24,6 +24,17 @@ fetch('http://localhost:8082/API/Pila', {
 
       }
 
+
+      if (pila.cantidad == 0){
+        const optionDestination = document.createElement('option');
+        optionDestination.value = pila.numPila;
+        optionDestination.textContent = pila.numPila;
+        optionDestination.setAttribute('pila_id', pila._id);
+        optionDestination.setAttribute('cantidad', pila.cantidad);   
+        selectElementDestination.appendChild(optionDestination);
+
+      }
+
     });
   })
   .catch(error => {

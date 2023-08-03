@@ -1,4 +1,5 @@
 const selectElementProveedor = document.getElementById('provider');
+// const selectElementEditarProveedor = document.getElementById('provider_editar');
 
 fetch('http://localhost:8082/API/provider', {
   method: 'GET',
@@ -13,9 +14,13 @@ fetch('http://localhost:8082/API/provider', {
 
     mortalidad.forEach(muerte => {
       const option = document.createElement('option');
+      // const optionEditar = document.createElement('option');
       option.value = muerte.nameProvider;
+      // optionEditar.value = muerte.nameProvider;
       option.textContent = muerte.nameProvider;
+      // optionEditar.textContent = muerte.nameProvider;
       selectElementProveedor.appendChild(option);
+      // selectElementEditarProveedor.appendChild(optionEditar);
     });
   })
   .catch(error => {
@@ -23,27 +28,3 @@ fetch('http://localhost:8082/API/provider', {
   });
 
   
-const selectElementEditarProveedor = document.getElementById('provider_editar');
-
-fetch('http://localhost:8082/API/provider', {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    'authenticate': localStorage.getItem("authenticate"),
-  }
-})
-  .then(response => response.json())
-  .then(data => {
-    const pilas = data.provider; // Ajusta la propiedad 'mantePila' según la estructura de los datos
-
-    pilas.forEach(pila => {
-      const option = document.createElement('option');
-      option.value = pila.nameProvider;
-      option.textContent = pila.nameProvider;
-      selectElementEditarProveedor.appendChild(option);
-    });
-  })
-  .catch(error => {
-    console.error('Error al obtener las pilas:', error);
-  });
-    

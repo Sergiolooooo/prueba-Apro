@@ -18,63 +18,30 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <style>
-        body.dark-mode {
-          background-color: #222;
-          color: #fff;
-        }
-      
-        body.dark-mode nav {
-          background-color: #333;
-        }
-
-
-        body.dark-mode .nav-links li a {
-          color: #fff;
-        }
-      
-        body.dark-mode .form label {
-          color: #fff;
-        }
-      
-        body.dark-mode .form input,
-        body.dark-mode .form select {
-          background-color: #333;
-          color: #fff;
-        }
-      
-        body.dark-mode .btn {
-          background-color: #555;
-          color: #fff;
-        }
-        body.dark-mode .table-striped thead th {
-    background-color: #555;
-    color: #fff;
-  }
-  
-      </style> 
 
 </head>
 
 <body>
     <nav class="nav">
         <div class="logo">
-            <img src="../ima/aproColores.png"  alt="Logo Image">
-          </div>
-      <button class="nav-toggle" aria-label="Abrir menú">
-        <i class="fas fa-bars"></i>
-      </button>
-      <ul class="nav-menu">
-        <li class="nav-menu-item">
-          <a href="PaneldeControl.html" class="nav-menu-link1 nav-link1"> <i class="uil uil-estate"></i>PANEL DE CONTROL</a>
-        </li>
-        <li class="nav-menu-item">
-          <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-moon"></i>MODO OSCURO</a>
-        </li>
-        <li class="nav-menu-item">
-          <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-signout"></i>CERRAR SESIÓN</a>
-        </li>
-      </ul>
+            <img src="../ima/aproColores.png" alt="Logo Image">
+        </div>
+        <button class="nav-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu">
+            <li class="nav-menu-item">
+                <a href="PaneldeControl.html" class="nav-menu-link1 nav-link1"> <i class="uil uil-estate"></i>PANEL DE
+                    CONTROL</a>
+            </li>
+            <li class="nav-menu-item">
+                <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-moon"></i>MODO OSCURO</a>
+            </li>
+            <li class="nav-menu-item">
+                <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-signout"></i>CERRAR
+                    SESIÓN</a>
+            </li>
+        </ul>
     </nav>
     <div class="container-custom">
         <header style="text-align: center;">Muestreo</header>
@@ -92,7 +59,7 @@
                         <div class="input-field">
                             <label for="currentStack">Pila</label>
                             <select class="formulario__campo" id="currentStack" required>
-                                <option disabled selected>--Seleccione la pila--</option>
+                                <option value="" disabled selected>--Seleccione la pila--</option>
                             </select>
                         </div>
 
@@ -109,22 +76,22 @@
                         <div class="input-field">
                             <label for="currentStack">Aprobación</label>
                             <select class="formulario__campo" id="approval" required>
-                                <option selected>--Seleccione la aprobación--</option>
-                                <option>Si</option>
-                                <option>No</option>
+                                <option value="" disabled selected>--Seleccione la aprobación--</option>
+                                <option value="Si" >Si</option>
+                                <option value="No" >No</option>
                             </select>
                         </div>
-                          
-                          
+
+
 
                         <div class="input-field">
                             <label for="employee">Encargado</label>
-                            <input type="text" id="employee" placeholder="" required>
+                            <input type="text" id="employee" placeholder="" required disabled>
                         </div>
 
                         <div class="input-field">
                             <label for="observation">Observacion</label>
-                            <textarea id="observation" ></textarea>
+                            <textarea id="observation"></textarea>
                         </div>
 
 
@@ -177,8 +144,8 @@
 
                         <div class="mb-3">
                             <label for="cantidad" class="col-form-label">Cantidad:</label>
-                            <input type="number" id="amount_editar" name="amount_editar" class="form-control"
-                                min="1" value="">
+                            <input type="number" id="amount_editar" name="amount_editar" class="form-control" min="1"
+                                value="">
                         </div>
 
                         <div class="input-field">
@@ -202,7 +169,7 @@
 
     </div>
 
-
+    <script src="../js/autenticacion.js"></script>
     <script src="../JQuery/code.jquery.com_jquery-3.7.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
         integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
@@ -214,10 +181,15 @@
     <script src="../datatables/pdfmake-0.2.7/pdfmake.min.js"></script>
     <script src="../datatables/pdfmake-0.2.7/vfs_fonts.js"></script>
     <script src="../datatables/Buttons-2.3.6/js/buttons.html5.min.js"></script>
-    <script src="../js/samplingPila"></script>
+    <script src="../js/samplingPila.js"></script>
     <script src="../js/actSampling.js"></script>
 
     <script>
+
+        const user = obtenerUsuario()
+        document.getElementById('employee').value = user.name
+        document.getElementById('employee').setAttribute('user_id', user._id)
+
         const listaMortalidad = () => {
             return fetch('http://localhost:8082/API/Sampling', {
                 method: 'GET',
@@ -346,31 +318,71 @@
             const samplingApproval = document.getElementById('approval').value;
             const samplingObservation = document.getElementById('observation').value;
 
-            const response = await fetch('http://localhost:8082/API/Sampling', {
-                method: 'POST',
+            const selectElement = document.getElementById('currentStack');
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const pila_id = selectedOption.getAttribute('pila_id');
+
+
+
+            const responsePila = await fetch(`http://localhost:8082/API/Pila`, {
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'authenticate': localStorage.getItem("authenticate"),
                 },
-                body: JSON.stringify({
-                    date: samplingDate,
-                    currentStack: samplingSelect,
-                    amount: samplingCantidad,
-                    averageWeight: samplingAverageWeight,
-                    employee: samplingEmployee,
-                    approval: samplingApproval,
-                    observation: samplingObservation
- 
-                })
-            });
 
-            if (response.ok) {
-                location.reload();
+            })
+
+            if (responsePila.ok) {
+                const responseData = await responsePila.json();
+                const pilaEncontrada = responseData.mantePila.find((pila) => pila._id == pila_id);
+
+                if ((pilaEncontrada.cantidad - samplingCantidad) < 0) {
+                    alert('la muestra debe ser menor o igual a la cantidad que hay en la pila');
+                    return
+                }
+
+                registrarMuestra()
+
             } else {
-                const responseData = await response.json();
+                const responseData = await responsePila.json();
                 console.error(responseData);
                 alert('Ocurrió un error al agregar la consulta');
             }
+
+
+
+            async function registrarMuestra() {
+
+                const response = await fetch('http://localhost:8082/API/Sampling', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'authenticate': localStorage.getItem("authenticate"),
+                    },
+                    body: JSON.stringify({
+                        date: samplingDate,
+                        currentStack: samplingSelect,
+                        amount: samplingCantidad,
+                        averageWeight: samplingAverageWeight,
+                        employee: samplingEmployee,
+                        approval: samplingApproval,
+                        observation: samplingObservation
+
+                    })
+                });
+                const responseData = await response.json();
+                if (responseData.ok) {
+                    // console.log(responseData.msg);
+                    alert(responseData.msg)
+                    location.reload();
+                } else {
+                  
+                    console.log(responseData);
+                    alert(responseData.msg);
+                }
+            }
+
         });
     </script>
 

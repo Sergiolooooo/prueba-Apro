@@ -17,68 +17,35 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link rel="stylesheet" 
-href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-   <style>
-        body.dark-mode {
-          background-color: #222;
-          color: #fff;
-        }
-      
-        body.dark-mode nav {
-          background-color: #333;
-        }
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-
-        body.dark-mode .nav-links li a {
-          color: #fff;
-        }
-      
-        body.dark-mode .form label {
-          color: #fff;
-        }
-      
-        body.dark-mode .form input,
-        body.dark-mode .form select {
-          background-color: #333;
-          color: #fff;
-        }
-      
-        body.dark-mode .btn {
-          background-color: #555;
-          color: #fff;
-        }
-        body.dark-mode .table-striped thead th {
-    background-color: #555;
-    color: #fff;
-  }
-  
-      </style> 
 </head>
 
 <body>
     <nav class="nav">
         <div class="logo">
-            <img src="../ima/aproColores.png"  alt="Logo Image">
-          </div>
-      <button class="nav-toggle" aria-label="Abrir menú">
-        <i class="fas fa-bars"></i>
-      </button>
-      <ul class="nav-menu">
-        <li class="nav-menu-item">
-          <a href="PaneldeControl.html" class="nav-menu-link1 nav-link1"> <i class="uil uil-estate"></i>PANEL DE CONTROL</a>
-        </li>
-        <li class="nav-menu-item">
-          <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-moon"></i>MODO OSCURO</a>
-        </li>
-        <li class="nav-menu-item">
-          <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-signout"></i>CERRAR SESIÓN</a>
-        </li>
-      </ul>
+            <img src="../ima/aproColores.png" alt="Logo Image">
+        </div>
+        <button class="nav-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu">
+            <li class="nav-menu-item">
+                <a href="PaneldeControl.html" class="nav-menu-link1 nav-link1"> <i class="uil uil-estate"></i>PANEL DE
+                    CONTROL</a>
+            </li>
+            <li class="nav-menu-item">
+                <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-moon"></i>MODO OSCURO</a>
+            </li>
+            <li class="nav-menu-item">
+                <a href="#" class="nav-menu-link1 nav-link1 toggle-mode"> <i class="uil uil-signout"></i>CERRAR
+                    SESIÓN</a>
+            </li>
+        </ul>
     </nav>
     <div class="container-custom" style="margin-top: 10rem;">
         <header style=" text-align: center;">Ingreso de Insumos</header>
@@ -93,13 +60,13 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
                         <div class="input-field">
                             <label for="employee">Encargado</label>
-                            <input type="text" id="employee" placeholder="202220222" required>
+                            <input type="text" id="employee" placeholder="202220222" required disabled>
                         </div>
 
                         <div class="input-field">
                             <label for="numPila">Pila</label>
                             <select class="formulario__campo" id="numPila" required>
-                                <option disabled selected>--Seleccione la pila--</option>
+                                <option value="" disabled selected>--Seleccione la pila--</option>
 
                             </select>
                         </div>
@@ -107,7 +74,7 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
                         <div class="input-field">
                             <label for="product">Producto</label>
                             <select class="formulario__campo" id="product" required>
-                                <option disabled selected>--Seleccione el producto--</option>
+                                <option value="" disabled selected>--Seleccione el producto--</option>
 
                             </select>
                         </div>
@@ -185,7 +152,7 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
                         <div class="mb-3">
                             <label for="employee_editar" class="col-form-label">Encargado</label>
                             <input type="text" id="employee_editar" class="form-control"
-                                placeholder="nombre del encargado" required>
+                                placeholder="nombre del encargado" required disabled>
                         </div>
 
 
@@ -201,7 +168,7 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
                         <div class="mb-3">
                             <label for="product_editar" class="col-form-label">Producto</label>
                             <select class="form-control" id="product_editar" required disabled>
-                                <option disabled selected>--Seleccione el producto--</option>
+                                <option value="" disabled selected>--Seleccione el producto--</option>
 
                             </select>
                         </div>
@@ -250,28 +217,34 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="../js/optionProducts.js"></script>
 
     <script>
+
+        const user = obtenerUsuario()
+        document.getElementById('employee').value = user.name
+        document.getElementById('employee').setAttribute('user_id', user._id)
+
+        
         const toggleModeButton = document.querySelector('.toggle-mode');
         const body = document.querySelector('body');
-        
+
         toggleModeButton.addEventListener('click', () => {
-          body.classList.toggle('dark-mode');
+            body.classList.toggle('dark-mode');
         });
-            </script>
-        
-        <script>
+    </script>
+
+    <script>
         const navToggle = document.querySelector(".nav-toggle");
         const navMenu = document.querySelector(".nav-menu");
-        
+
         navToggle.addEventListener("click", () => {
-          navMenu.classList.toggle("nav-menu_visible");
-        
-          if (navMenu.classList.contains("nav-menu_visible")) {
-            navToggle.setAttribute("aria-label", "Cerrar menú");
-          } else {
-            navToggle.setAttribute("aria-label", "Abrir menú");
-          }
+            navMenu.classList.toggle("nav-menu_visible");
+
+            if (navMenu.classList.contains("nav-menu_visible")) {
+                navToggle.setAttribute("aria-label", "Cerrar menú");
+            } else {
+                navToggle.setAttribute("aria-label", "Abrir menú");
+            }
         });
-          </script>
+    </script>
 
 
     <script>
@@ -310,7 +283,6 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
                         if (inventoryEncontrado) {
                             productEncontrado = inventoryEncontrado.products.find((product) => product._id === insumo.product_id);
                         } else {
-                            console.log("No se encontró el inventario con el 'inventory_id' buscado.");
                             return
                         }
 
@@ -436,7 +408,6 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
             const insumoProductInventory_id = selectedOption.getAttribute('inventory_id');
 
 
-
             const discountInsumo = async () => {
                 try {
 
@@ -488,11 +459,11 @@ href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
                     if (response.ok) {
                         console.log(responseData);
-                        alert("se agrego correctamente y desconto la cantidad usada del producto");
+                        alert(responseData.msg);
                         location.reload();
                     } else {
                         console.log(responseData);
-                        alert('Ocurrió un error al agregar la consulta');
+                        alert(responseData.error);
                     }
                 } catch (error) {
                     console.error('Error al agregar el insumo:', error);

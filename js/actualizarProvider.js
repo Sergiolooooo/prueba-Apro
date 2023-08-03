@@ -21,12 +21,14 @@ on(document, 'click', '.btnEditar', e => {
   const identification = fila.children[8].innerHTML;
   const telephone = fila.children[9].innerHTML;
   const email = fila.children[10].innerHTML;
-  
+
   typeProvider_editar.value = typeProvider;
   nameProvider_editar.value = nameProvider;
   direccion_editar.value = direccion;
   provincia_editar.value = provincia;
+  habilitarCantonesEditar()
   canton_editar.value = canton;
+  habilitarDistritosEditar()
   distrito_editar.value = distrito;
   fullName_editar.value = fullName;
   typeIdentification_editar.value = typeIdentification;

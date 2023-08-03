@@ -20,7 +20,7 @@ on(document, 'click', '.btnEditar', e => {
   provider_editar.value = provider;
   loteProvider_editar.value = loteProvider;
   pilaProvider_editar.value = pilaProvider;
-  pilaEntry_editar.value = pilaEntry;
+  numPila_editar.value = pilaEntry;
   batch_editar.value = batch;
   typeFish_editar.value = typeFish;
   cantidad_editar.value = cantidad;
@@ -39,7 +39,7 @@ on(document, 'click', '.btnEditar', e => {
         provider: provider_editar.value,
         loteProvider: loteProvider_editar.value,
         pilaProvider: pilaProvider_editar.value,
-        pilaEntry: pilaEntry_editar.value,
+        pilaEntry: numPila_editar.value,
         batch: batch_editar.value,
         typeFish: typeFish_editar.value,
         cantidad: cantidad_editar.value
